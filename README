@@ -1,0 +1,74 @@
+README for PLASTIC a matlab plastic spiking network simulator
+Guy Billings 2007
+g.billings@ucl.ac.uk
+-----------------------------------
+
+DISCLAIMER:
+
+PLEASE NOTE that this software is strictly ALPHA. It is entirely 
+possible that it might do strange things to your computer if used outwith
+the limited ways in which it has already been employed. It might cause computer crashes. 
+It might make numerical errors. It might cause you to be abducted by aliens. NO LIABILITY
+will be accepted on my behalf for any loss of reputation or mucous membrane precipitated by
+the use of PLASTIC. Compilation of the code implies approval of these conditions.
+
+The results of simluation should always (in my opinion) be backed up by some sort of
+calculation. It is the only way to be sure that the output is sensible.
+
+-----------------------------------
+
+INTRODUCTION:
+
+PLASTIC was created by me in order to impliment two models within the neuroscientific literature.
+The models are due to Song Abbot and Miller [1,2] and Mark van Rossum [3].
+
+PLASTIC is a C program that is called by MATLAB and impliments a network of integrate and fire
+neurons. I used C because integrate and fire neurons are slow in MATLAB. PLASTIC should be
+faster than MATLAB for the equivalent model (That is unless you create a fancy Markov integrate 
+and fire neuron implimentation [4]).
+
+The benfits of PLASTIC is that it is faster than making a full implimentation in MATLAB, 
+but it allows the user to use the MATLAB interface and to analyse the results of the 
+simulation from within MATLAB. 
+
+PLASTIC is useless without the proper configuration in MATLAB. Consequently a script must be
+written that sets PLASTIC up and starts it running. Included with plastic is an example script
+'ifnetwork.m' that should work just fine. 
+
+See the configuration files (setup.m,paramters.m,set_output.m) for more information.
+
+RUNNNIG PLASTIC AS BACKGROUND:
+
+For longer simulations you may want to run PLASTIC in the background and then go away and leave 
+it. The included script 'matback' allows you to do this.
+
+You must first make matback executable (chmod 700 matback). Then ./matback ifnetwork.m outputfile 
+will run your simulation and dump the output into 'ouputfile'
+
+PLASTIC IS EXPERIMENTAL SOFTWARE:
+
+Please remeber that this is experimental software. In particular there is little error handling
+at present. It has been designated version 0.1 for a reason: it is not net yet close
+to stable a release.
+
+If you use it at all or are interested in it please let me know. If it is of interest to anyone then I shall continue to develop it and
+might even write some proper documentation. Feel free to use and reuse the code, but please let
+me know and if you release your subsequent code, see that the GPL of PLASTIC is preserved.
+
+Please send bug reports, comments and requests to: g.o.billings@sms.ed.ac.uk
+(I think there are many bugs, and without reports I cannot fix them)
+
+References:
+
+[1] Song, S., Miller, K.D. and Abbott, L.F. (2000) Competitive Hebbian Learning Through Spike-Timing Dependent ÊSynaptic Plasticity. Nature Neurosci. 3:919-926
+[2] Song, S. and Abbott, L.F. (2001) Column and Map Development and Cortical Re-Mapping Through Spike-Timing Dependent Plasticity. Neuron 32:339-350
+[3] M van Rossum, G.-q. Bi, and G.G. Turrigiano (2000) Stable Hebbian learning from spike time dependent plasticity, Journal of Neuroscience 20, 8812-8821
+[4] NEST Neural Simulation Toolbox 
+(http://www.nest-initiative.uni-freiburg.de/helpdesk/synod2/doc/doxygen/html/index.html)
+
+See:
+
+http://homepages.inf.ed.ac.uk/s0344725
+
+
+

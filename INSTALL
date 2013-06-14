@@ -1,0 +1,76 @@
+INSTALL NOTES FOR PLASTIC a plastic spiking network simulator for
+MATLAB. 
+2007 Guy Billings
+-------------------------
+
+DISCLAIMER:
+
+PLEASE NOTE that this software is strictly ALPHA. It is entirely 
+possible that it might do strange things to your computer if used outwith
+the limited ways in which it has already been employed. It might cause computer crashes. 
+It might make numerical errors. It might cause you to be abducted by aliens. NO LIABILITY
+will be accepted on my behalf for any loss of reputation or mucous membrane precipitated by
+the use of PLASTIC. Compilation of the code implies approval of these conditions.
+
+The results of simluation should always (in my opinion) be backed up by some sort of
+calculation. It is the only way to be sure that the output is sensible.
+
+PREREQUISITES:
+
+As far as I know this is what you will need to compile and use PLASTIC. This is
+not exhaustive. If you run into problems due to your system configuration then contact me: 
+g.o.billings@gmail.com
+
+Ufortunately I unable to provide information about using PLASTIC
+on Windows platforms at this time (I dont use them). However in theory it should work just 
+as well on windows. If it does, and you want to write an entry for this file telling us about 
+it then please let me know.
+
+I have used PLASTIC on Mac OS X and on Linux. I have:
+
+- A compiler that is correctly specified in mexopts.sh (see MATLAB documentation)
+- The GNU Scientific library installed (plastic wont work without it)
+
+
+To install PLASTIC v0.1:
+
+
+1) Make your project directory:
+
+mkdir foo
+
+2) Put the PLASTIC archive into your directory
+
+3) unzip all of the files in plastic.targz into the directory:
+
+gzip -d plastic.tar.gz
+tar -xvf plastic.tar
+
+4) You should now have the files plastic.c, networkfuncs.c and ifnetwork.h in the
+directory (as well as some others). Fire MATLAB up.
+
+5) Make sure that MATLAB has /foo as its working directory
+
+6) type:
+
+mex plastic.c networkfuncs.c
+
+This should produce a file named 'plastic.mexglx'. If it produces a file called 'plastic',
+with no .mexglx extension then you will need to rename the file
+
+mv plastic plastic.mexglx
+
+7) Edit the configurations files (see README) and type 'ifnetwork'. PLASTIC should now run. If
+you get the following error:
+
+??? Invalid MEX-file
+   '/amd/nfs/wyvern/disk/ptn138/s0344725/jobs/nearest/plastic.mexglx':
+   /amd/nfs/wyvern/disk/ptn138/s0344725/jobs/nearest/plastic.mexglx:
+   undefined symbol: gsl_rng_taus.
+
+then plastic.mexglx has not linked correctly against the GNU GSL library. 
+
+Try re-compiling with the following options:
+
+mex plastic.c networkfuncs.c -lgsl -lgslcblas
+
